@@ -1,0 +1,11 @@
+<!-- insert_before "erb[silent]:contains('if can? :admin, Spree::Order')" -->
+<% if can? :admin, Spree::BlogPost %>
+  <ul class="nav nav-sidebar flex-column">
+    <%= tab :blog_posts, icon: "bullhorn" %>
+  </ul>
+<% end %>
+<% if can? :admin, Spree::Page %>
+  <ul class="nav nav-sidebar flex-column">
+    <%= main_menu_tree :pages, icon: "file", sub_menu: "pages", url: "#sidebar-pages" %>
+  </ul>
+<% end %>

@@ -1,0 +1,61 @@
+<% content_for :page_title do %>
+  <%= plural_resource_name(Spree::BlogPost) %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <%= button_link_to Spree.t(:new_blog_post), new_object_url, { class: "btn-success", icon: 'add', id: 'admin_new_blog_post' } %>
+<% end if can?(:create, Spree::BlogPost) %>
+
+<% content_for :table_filter do %>
+  <div data-hook="admin_blog_post_sidebar">
+
+    <%= search_form_for [:admin, @search] do |f| %>
+      <%- locals = { f: f } %>
+      <div data-hook="admin_blog_post_index_search" class="row">
+        <div class="col-xs-12 col-md-6">
+          <div class="form-group">
+            <%= f.label :title, Spree.t(:name) %>
+            <%= f.text_field :title, size: 15, class: "form-control js-quick-search-target" %>
+          </div>
+        </div>
+      </div>
+      <div data-hook="admin_carousel_index_search_buttons" class="form-actions">
+        <%= button Spree.t(:search), 'search' %>
+      </div>
+    <% end %>
+
+  </div>
+<% end %>
+
+<%= render partial: 'spree/admin/shared/index_table_options', locals: { collection: @collection } %>
+
+<% if @collection.any? %>
+  <table class="table" id="listing_blog_posts">
+    <thead>
+    <tr data-hook="admin_blog_posts_index_headers">
+      <th><%= sort_link @search, :title, Spree.t(:title), { default_order: "desc" }, { title: 'admin_blog_posts_listing_name_title' } %></th>
+      <th><%= sort_link @search, :available_on, Spree.t(:available_on), { default_order: "desc" }, { title: 'admin_available_on_listing_name_title' } %></th>
+      <th data-hook="admin_products_index_header_actions" class="actions"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @collection.each do |post| %>
+      <tr id="<%= spree_dom_id post %>" data-hook="admin_carousels_index_rows" class="<%= cycle('odd', 'even') %>">
+        <td><%= link_to post.try(:title), edit_admin_blog_post_path(post) %></td>
+        <td><%= post.try(:available_on)%></td>
+        <td class="actions actions-3 text-right" data-hook="admin_carousels_index_row_actions">
+          <%= link_to_edit post, no_text: true, class: 'edit' if can?(:edit, post) %>
+          <%= link_to_delete post, no_text: true if can?(:delete, post) %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="alert alert-info no-objects-found">
+    <%= Spree.t(:no_resource_found, resource: plural_resource_name(Spree::BlogPost)) %>,
+    <%= link_to Spree.t(:add_one), new_object_url if can?(:create, Spree::BlogPost) %>!
+  </div>
+<% end %>
+
+<%= render partial: 'spree/admin/shared/index_table_options', locals: { collection: @collection } %>
