@@ -1,0 +1,21 @@
+<div class="card w-75 mx-auto mb-4">
+  <div class="card-header">
+    <h4 class="card-title"><%= post.title %></h4>
+    <div class="text-muted row">
+      <div class="col">
+        <%= time_tag post.created_at, time_ago_in_words(post.created_at) %>
+      </div>
+      <div class="col text-right">
+        <%= post.creator.email %>
+      </div>
+    </div>
+  </div>
+  <div class="card-img">
+  </div>
+  <div class="card-body">
+    <%= raw post.content %>
+  </div>
+  <div class="card-footer text-center">
+    <%= link_to "View more", post, class: "w-25 btn btn-primary" %>
+  </div>
+</div>

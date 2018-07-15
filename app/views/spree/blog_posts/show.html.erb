@@ -1,0 +1,20 @@
+<% @body_id = 'news' %>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1 class="news_headline">
+        <%= @post.title %>
+      </h1>
+      <div class="news_meta">
+        <%= time_tag @post.created_at, time_ago_in_words(@post.created_at) %>
+      </div>
+      <div class="news_image">
+        <%= @post.image unless @post.image.nil? %>
+      </div>
+      <div class="body">
+        <%= raw(@post.content) %>
+      </div>
+
+    </div>
+  </div>
+</div>

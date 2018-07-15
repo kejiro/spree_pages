@@ -10,4 +10,5 @@ Spree::Core::Engine.add_routes do
     resources :blog_posts
   end
 
+  resources :blog_posts, only: [:index, :show], path: "news"
 end
