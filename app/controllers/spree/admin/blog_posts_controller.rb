@@ -17,6 +17,11 @@ module Spree
             page(params[:page]).
             per(50)
       end
+
+      protected
+      def find_resource
+        Spree::BlogPost.friendly.find(params[:id])
+      end
     end
   end
 end
