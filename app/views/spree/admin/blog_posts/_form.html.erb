@@ -1,0 +1,46 @@
+<div class="row">
+  <div data-hook="blog_post_title" class="col-xs-12">
+    <%= f.field_container :title, class: ['form-group'] do %>
+      <%= f.label :title, Spree.t(:title) %> <span class="required">*</span>
+      <%= f.text_field :title, class: 'form-control title', required: :required %>
+      <%= f.error_message_on :title %>
+    <% end %>
+  </div>
+</div>
+<div class="row">
+  <div data-hook="blog_post_available_on" class="col-xs-12 col-sm-6 col-md-5">
+    <%= f.field_container :available_on, class: ['form-group'] do %>
+      <%= f.label :available_on, Spree.t(:available_on) %>
+      <%= f.error_message_on :available_on %>
+      <%= f.text_field :available_on, class: 'datepicker form-control' %>
+    <% end %>
+  </div>
+  <div data-hook="blog_post_blog" class="col-xs-12 col-sm-6 col-md-5 col-md-offset-2">
+    <%= f.field_container :blog, class: ['form-group'] do %>
+      <%= f.label :blog_id, Spree.t(:blog) %>
+      <%= f.collection_select :blog_id, Spree::Blog.all, :id, :title, {include_blank: true}, {class: 'select2'} %>
+    <% end %>
+  </div>
+</div>
+<div class="row">
+  <div data-hook="blog_post_content" class="col-xs-12">
+    <%= f.field_container :content, class: ['form-group', 'field'] do %>
+      <%= f.label :content, Spree.t(:content) %>
+      <%= f.text_area :content, {rows: "2", class: 'form-control', id: 'page_body'} %>
+      <%= f.error_message_on :content %>
+    <% end %>
+  </div>
+</div>
+<div class="row">
+  <div data-hook="blog_post_featured_image" class="col-xs-12">
+    <%= f.fields_for :image, @object.image || Spree::Image.new do |i| %>
+      <div class="form-group">
+        <%= i.label :attachment, Spree.t(:featured_image) %>
+        <div class="well">
+          <%= image_tag @object.image.attachment.url(:large) unless @object.image.nil? %>
+          <%= i.file_field :attachment, class: 'form-control' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
