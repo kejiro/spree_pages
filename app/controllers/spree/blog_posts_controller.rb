@@ -2,6 +2,7 @@ module Spree
   class BlogPostsController < Spree::StoreController
     before_action :load_post, only: :show
     before_action :load_posts, only: :index
+    helper 'spree/pages'
 
     def show
 

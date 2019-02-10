@@ -26,7 +26,7 @@
   <div data-hook="blog_post_content" class="col-xs-12">
     <%= f.field_container :content, class: ['form-group', 'field'] do %>
       <%= f.label :content, Spree.t(:content) %>
-      <%= f.text_area :content, {rows: "2", class: 'form-control', id: 'page_body'} %>
+      <%= f.text_area :content, {rows: "2", class: 'form-control', id: 'post_content_body'} %>
       <%= f.error_message_on :content %>
     <% end %>
   </div>
@@ -44,3 +44,8 @@
     <% end %>
   </div>
 </div>
+<script type="text/javascript" charset="utf-8">
+    Spree.ready($ => {
+        ClassicEditor.create(document.querySelector('#post_content_body'))
+    })
+</script>
