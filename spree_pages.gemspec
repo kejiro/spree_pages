@@ -5,16 +5,16 @@ $LOAD_PATH.unshift lib unless $LOAD_PATH.include?(lib)
 require 'spree_pages/version'
 
 Gem::Specification.new do |s|
-  s.platform    = Gem::Platform::RUBY
-  s.name        = 'spree_pages'
-  s.version     = SpreePages.version
-  s.summary     = 'Add extension summary here'
+  s.platform = Gem::Platform::RUBY
+  s.name = 'spree_pages'
+  s.version = SpreePages.version
+  s.summary = 'Add extension summary here'
   s.description = 'Add (optional) extension description here'
   s.required_ruby_version = '>= 2.2.7'
 
-  s.author    = 'You'
-  s.email     = 'you@example.com'
-  s.homepage  = 'https://github.com/your-github-handle/spree_pages'
+  s.author = 'You'
+  s.email = 'you@example.com'
+  s.homepage = 'https://github.com/your-github-handle/spree_pages'
   s.license = 'BSD-3-Clause'
 
   # s.files       = `git ls-files`.split("\n").reject { |f| f.match(/^spec/) && !f.match(/^spec\/fixtures/) }
@@ -23,6 +23,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'spree_core', '>= 3.1.0', '< 4.0'
   s.add_dependency 'spree_extension'
+  s.add_dependency 'ckeditor', '~> 4.2.0'
 
   s.add_development_dependency 'capybara'
   s.add_development_dependency 'capybara-screenshot'

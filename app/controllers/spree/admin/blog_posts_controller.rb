@@ -12,6 +12,7 @@ module Spree
         params[:q] = {} if params[:q].blank?
 
         @collection = super
+        @collection = @collection.order("available_on desc nulls first")
         @search = @collection.ransack(params[:q])
         @collection = @search.result.
             page(params[:page]).
@@ -19,6 +20,7 @@ module Spree
       end
 
       protected
+
       def find_resource
         Spree::BlogPost.friendly.find(params[:id])
       end

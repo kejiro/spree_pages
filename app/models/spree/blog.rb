@@ -8,7 +8,7 @@ module Spree
     }
 
     def latest(limit = 10)
-      posts.order(created_at: :desc).limit(limit)
+      posts.visible.limit(limit)
     end
 
     class << self

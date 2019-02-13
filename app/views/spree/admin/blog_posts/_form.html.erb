@@ -46,6 +46,8 @@
 </div>
 <script type="text/javascript" charset="utf-8">
     Spree.ready($ => {
-        ClassicEditor.create(document.querySelector('#post_content_body'))
+        CKEDITOR.replace('post_content_body', {
+            height: 260,
+        });
     })
 </script>

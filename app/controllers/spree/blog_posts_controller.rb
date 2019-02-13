@@ -14,7 +14,7 @@ module Spree
     end
 
     def load_posts
-      @posts = Spree::BlogPost.visible.order(created_at: :desc).page(params[:page]).per(20)
+      @posts = Spree::BlogPost.visible.order(available_on: :desc).page(params[:page]).per(20)
     end
   end
 end

@@ -12,7 +12,7 @@ module Spree
     self.whitelisted_ransackable_attributes = %w[description title]
 
     scope :visible, -> {
-      where("available_on < ?", Time.now)
+      where("available_on < ?", Time.now).order(available_on: :desc)
     }
 
   end
