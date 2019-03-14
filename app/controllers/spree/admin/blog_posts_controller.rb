@@ -6,6 +6,11 @@ module Spree
         super
       end
 
+      def create
+        params[:blog_post][:created_by] = spree_current_user.id
+        super
+      end
+
       def collection
         return @collection if @collection.present?
         # params[:q] can be blank upon pagination

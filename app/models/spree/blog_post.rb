@@ -9,6 +9,8 @@ module Spree
 
     accepts_nested_attributes_for :image
 
+    validates_presence_of :created_by
+
     self.whitelisted_ransackable_attributes = %w[description title]
 
     scope :visible, -> {
