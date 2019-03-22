@@ -6,6 +6,7 @@ module Spree
 
     validates :permalink, presence: true, uniqueness: {allow_blank: true}
 
+    scope :active, -> {where("available_on <= ?", Time.now)}
 
     def deleted?
       false
